@@ -5,18 +5,10 @@ import os
 from datetime import datetime
 import tkinter as tk
 
-
-
-
 root = tk.Tk()
 root.geometry("1200x1000")
 cur_date=datetime.today()
 root.title("CU_Hazir_Hain...")
-
-
-
-
-
 
 path = 'C:\\Users\\Siddhant Tiwari\\PycharmProjects\\E_attendance-Project\\images'
 images = []
@@ -29,10 +21,8 @@ for cl in myList:
     classNames.append(os.path.splitext(cl)[0])
 print(classNames)
 
-
 def findEncodings(images):
     encodeList = []
-
 
     for img in images:
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -40,12 +30,10 @@ def findEncodings(images):
         encodeList. append(encode)
     return encodeList
 
-
 def markAttendance(name):
     with open('Attendance.csv', 'r+') as f:
         myDataList = f.readlines()
-
-
+        
         nameList = []
         for line in myDataList:
             entry = line.split(',')
@@ -80,7 +68,6 @@ while True:
         if matches[matchIndex]:
             name = classNames[matchIndex].upper()
 
-
             y1, x2, y2, x1 = faceLoc
             y1, x2, y2, x1 = y1 * 4, x2 * 4, y2 * 4, x1 * 4
             cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255,0), 6)
@@ -102,7 +89,6 @@ while True:
             f2 = tk.Frame(relief="raised", padx=10, pady=10).grid(row=4, column=4, rowspan=4)
             tk.Label(f1, image=photo).grid()
             
-
             tk.Label(f2, text="NAME : ", fg="black", font="Arial 16 bold").grid(row=4, column=5)
             tk.Label(f2, text=name, fg="black", font="Arial 16 bold").grid(row=4, column=6)
             tk.Label(f2, text="Department :", fg="black", font="Arial 16 bold").grid(row=5, column=5)
@@ -114,8 +100,6 @@ while True:
 
             tk.Label(root, text="Attendance Done", fg="black", font="Broadway 18 bold").grid(row=8, column=6)
             root.mainloop()
-
-
 
     cv2.imshow('Webcam', img)
     cv2.waitKey(1)
